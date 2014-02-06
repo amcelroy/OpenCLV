@@ -1,0 +1,16 @@
+6-1-2013: 
+	Version 1.0.0
+	Initial Release
+
+6-5-2013:
+	Version 1.0.1
+	Added a check for OpenCL.dll and warns user if not found.  User can still use the VIs to prototype the block diagram, but no code will execute on the device.
+
+6-14-2013:
+	Added new error logging and checking features
+	Made copying, reading, and writing more useful
+	Added lots of new examples
+	Added Functional Global project template
+	Changed examples to be functional global based
+	Moved Examples to Example Finder
+	Add help documents to Labview

@@ -1,0 +1,84 @@
+END-USER SOFTWARE LICENSE AGREEMENT
+
+PLEASE READ THIS AGREEMENT CAREFULLY
+
+THIS END USER LICENSE AGREEMENT ("AGREEMENT") IS BETWEEN RaptorView, LLC (THE "COMPANY") AND THE PERSON WHO OPENS THIS PACKAGE OR USES THE SOFTWARE, WHICH ACCOMPANIES THIS AGREEMENT (THE "USER"). THIS AGREEMENT GIVES A USER THE RIGHT TO ACCESS AND USE THE COMPANY'S SOFTWARE, PRODUCTS AND SERVICES (“PRODUCTS”), AS FURTHER IDENTIFIED HEREIN, PURCHASED FROM THE COMPANY, ITS RESELLERS OR AGENTS PURSUANT TO A PURCHASE AGREEMENT, CONTRACT, SALES ORDER, INVOICE OR SIMILAR DOCUMENT ("PURCHASE CONTRACT"). THE COMPANY IS WILLING TO GRANT THE USER THE RIGHT TO ACCESS AND USE THE COMPANY'S PRODUCTS ONLY IF THE USER ACCEPTS ALL OF THE TERMS OF THIS AGREEMENT, AND PAYS OR HAS PAID THE COMPANY, ITS RESELLERS OR AGENTS, THE FULL PURCHASE PRICE (TO INCLUDE ALL APPLICABLE TAXES AND FEES) FOR USE OF THE LICENSE TO THE PRODUCTS PURCHASED.
+
+BY CLICKING THE "I AGREE" BUTTON AND/OR ACCESSING THE PRODUCTS, THE USER ACKNOWLEDGES THAT USER HAS READ THIS AGREEMENT, UNDERSTANDS IT, AND AGREES TO BE BOUND BY IT. IF THE USER DOES NOT AGREE TO ALL OF THE TERMS IN THIS AGREEMENT, THE USER SHOULD NOT ACCESS OR OTHERWISE UTILIZE THE PRODUCTS BECAUSE NO LICENSE SHALL HAVE BEEN GRANTED THERETO.
+
+LICENSE 
+
+In consideration of the payment of the purchase price for the right to use Company's Products, and the User's adherence to all provisions of this Agreement, the Company grants the User a personal, non-exclusive, non-transferable, revocable license to access and use the Company's Products covered hereunder for the sole purpose of accessing the Products purchased under the Purchase Contract.  The Products that are covered by this Agreement include: OpenCLV. The Products also include any other programs, tools, components and any updates (for example, documentation, help content, bug fixes, or other information and releases) related to the Products that Company provides or makes available to you.
+
+RESTRICTIONS 
+
+You are not licensed or permitted under this Agreement to do any of the following: (1) allow any other person to use the Products; (2) rent, loan, resell, distribute, or redistribute the original CD  or a copy of the Products to any other person or entity; (3) make the Products available on any file-sharing or application hosting service; (4) electronically send the Product to any other person; (5) copy the printed materials or user documentation accompanying the Product other than as necessary to support the uses permitted above; (6) making the Products available to others via shared access to a single computer, a computer network, or by sharing access information, which includes the User's Username and Password; and (7) reverse engineer, disassemble, decompile, or translate the Products, or otherwise attempt to derive its source code or the source code through which the Products is accessed, or authorize any third-party to do any of the foregoing. The license granted hereunder is personal to the User, and any attempt by the User to transfer any of the rights, duties or obligations hereunder shall terminate this Agreement and be void. 
+
+RESERVATION OF RIGHTS AND OWNERSHIP 
+
+The Company's Products are the property of the Company and its licensor(s), if any, and subject to applicable patent, copyright, trade secrets, trademarks and other proprietary rights. The Products are licensed, not sold, to the User for use only under the terms of this Agreement, and the Company reserves all rights not expressly granted to the User.
+
+TERMINATION 
+
+This Agreement will terminate immediately if the User breaches any term of this Agreement. Further, in the event of a termination or expiration of any agreement between the Company and a third-party content provider or licensor of all or a part of the Products, the User's right to access and use the Products may also terminate or expire without prior notice to User. A User may terminate this Agreement at any time by notifying the Company in writing. Upon receipt of notice of termination from the User, the license and the User's access to the Products shall cease. Upon termination, any refund to which the User may be entitled shall be determined in accordance with the terms of the applicable Purchase Contract.
+
+CONTENT MAINTAINED BY THE COMPANY 
+
+User acknowledges and understands that: (1) the Company may, from time to time, elect to update the Products, but the Company does not warrant or guarantee that any Products or other information accessed through the Company's website(s) will be updated at any time during the term of this Agreement; and (2) the Company does not recommend, warrant or guarantee the use or performance of any third-party product or service described in the Products or elsewhere in the Company's website(s), nor is the Company responsible for malfunction of such products or services due to errors in the Products, the User's negligence or otherwise. User agrees to seek additional information on any third-party product or service from the respective third party. The User covenants that it will use the Products only for its intended use. 
+
+LIMITED WARRANTY 
+
+The Company warrants that the Products will perform substantially in accordance with the accompanying materials for a period of 1 year (the “Warranty Period”) from the date of receipt. If an implied warranty or condition is created by applicable law, and federal or state law prohibits disclaimer of it, you also have an implied warranty or condition, BUT ONLY AS TO DEFECTS DISCOVERED DURING THE PERIOD OF THIS LIMITED WARRANTY (1 year). AS TO ANY DEFECTS DISCOVERED AFTER THE WARRANTY PERIOD, THERE IS NO WARRANTY OR CONDITION OF ANY KIND. Some states do not allow limitations on how long an implied warranty or condition lasts, so the above limitation may not apply to you. Any supplements or updates to the Product, including without limitation, any (if any) updates provided to you after the expiration of the Warranty Period are not covered by any warranty or condition, express, implied or statutory.
+
+WARRANTY DISCLAIMER 
+
+The Limited Warranty that appears above is the only express warranty made to you and is provided in lieu of any other express warranties or similar obligations (if any) created by any advertising, documentation, packaging, or other communications. Except for the Limited Warranty and to the maximum extent permitted by applicable law, the Company and its suppliers provide the Product and support services (if any) AS IS AND WITH ALL FAULTS, and hereby disclaim all other warranties and conditions, whether express, implied or statutory, including, but not limited to, any (if any) implied warranties, duties or conditions of merchantability, of fitness for a particular purpose, of reliability or availability, of accuracy or completeness of responses, of results, of workmanlike effort, of lack of viruses, and of lack of negligence, all with regard to the Software, and the provision of or failure to provide support or other services, information, software, and related content through the Software or otherwise arising out of the use of the Software. ALSO, THERE IS NO WARRANTY OR CONDITION OF TITLE, QUIET ENJOYMENT, QUIET POSSESSION, AND CORRESPONDENCE TO DESCRIPTION OR NON-INFRINGEMENT WITH REGARD TO THE SOFTWARE.
+
+LIMITATION OF LIABILITY 
+
+Except as specifically provided herein, neither the Company, its affiliates, resellers, agents, or licensors, if any, shall be liable for any claim, demand or action arising out of, or relating to, the User's use of the Products or the Company's performance of (or failure to perform) any obligation under this Agreement or for special, incidental or consequential damages, including, without limitation, damages due to lost revenues or profits, business interruption, or other damages caused by User's inability to use the Products, even if the Company, its affiliates, resellers, agents, or licensors have been advised of the possibility of such loss or damages, and whether or not such loss or damages is or are foreseeable. The entire cumulative liability of Company, and its affiliates, resellers, agents, or licensors for any reason arising from or relating to this Agreement shall be limited to the amount paid by you to Company for the Products in the twelve (12) month period immediately preceding the event giving rise to such claim.
+
+EXPORT LAW 
+
+The Company's Products are subject to U.S. export control laws and may be subject to export or import regulations in other countries. Unless in compliance with applicable law and specifically authorized in writing by the Company prior to any Product access, the User shall not export the Products under any circumstances whatsoever. In any case, the User will indemnify and hold the Company harmless from any and all claims, losses, liabilities, damages, fines, penalties, costs and expenses (including reasonable attorney's fees) arising from, or relating to, any breach by the User of the User's obligations under this section.
+
+GOVERNING LAW, JURISDICTION AND VENUE 
+
+This Agreement shall for all purposes be governed by and interpreted in accordance with the laws of the State of Texas as those laws are applied to contracts entered into, and to be performed entirely in Texas by Texas residents. Any legal suit, action or proceeding arising out of, or relating to this Agreement, shall be commenced in a federal court in Texas or in state court in Travis County, Texas, and each party hereto irrevocably submits to the personal and exclusive jurisdiction and venue of any such court in any such suit, action or proceeding and waives any right which it may have to transfer or change the venue of any such suit, action or proceeding, except that in connection with any suit, action or proceeding commenced in a state court, each party retains the right to remove such suit, action or proceeding to federal court to the extent permissible. The United Nations Convention on Contracts for the International Sale of Goods is specifically excluded from application to this Agreement.
+
+ATTORNEY FEES 
+
+If any legal action or proceeding is brought for the enforcement of this Agreement or arises from the alleged breach, dispute, default or misrepresentation in connection with any of the provisions of this Agreement, the prevailing party or parties shall be entitled to recover reasonable attorney's fees and other costs incurred as a result of such legal action or proceeding.
+
+AMENDMENTS
+
+It is recommended that User review the Company’s website periodically for new or additional terms and changes to this Agreement. Company has the right to change or add to the terms of this Agreement, and to change, delete, discontinue, or impose conditions on any feature or aspect of the Products, including but not limited to, terms, technical support options, and other product-related policies and features, at any time and upon notice by any means Company determines in its discretion to be reasonable. Your continued use of the Products after Company’s publication of any such changes shall constitute your acceptance of this Agreement as modified.
+
+WAIVER 
+
+No failure to enforce any term of this Agreement shall constitute a waiver of such term in the future unless such waiver so provides by its terms.
+
+ASSIGNMENT 
+
+Neither this Agreement nor any of the User's rights or obligations hereunder may be assigned by the User in whole or in part without the prior written approval of the Company. Any other attempted assignment shall be null and void.
+
+SEVERABILITY 
+
+If any part of this Agreement is for any reason found to be invalid, illegal or unenforceable, the validity, legality and enforceability of the remaining provisions of this Agreement shall not be affected and same shall remain in effect.
+
+COMPLETE AGREEMENT 
+
+This Agreement is the complete and exclusive statement of the agreement between the Company and the User with respect to its subject matter, and supersedes and voids any proposal or prior agreement, oral or written, and any other communications between the parties in relation to its subject matter. No waiver, alteration or modification of this Agreement shall be valid unless made in writing and signed by a corporate officer of the Company.
+
+
+June 03, 2013 
+
+
+ALL INFORMATION, INSTRUCTIONS, TIPS, COMMENTS, AND FORMS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING AS TO LEGAL EFFECT OR COMPLETENESS. They are for guidance and should be modified by you or your attorney to meet your specific needs and the laws of your state. Use at your own risk. Docstoc, its employees or contractors who wrote or modified any form, instructions, tips, comments, and decision tree alternatives and choices, are NOT providing legal or any other kind of advice, are not creating or entering into an Attorney-Client relationship, and were most likely NOT prepared or reviewed by an attorney licensed to practice law in your state. Docstoc is unable to and does not provide legal advice. Please note that laws change and are regularly amended, therefore, the provisions, and names and section numbers of statutes within this document, if any, may not be 100% correct as they may be partially or wholly out of date and some relevant ones may have been omitted or misinterpreted. The information and forms are not a substitute for the advice of your own attorney. You may wish to consult with your own attorney licensed to practice law in your state.
+This document is not approved, endorsed by, or affiliated with any State, or governmental or licensing entity.
+Note: You should have carefully read and considered the instructions, tips, comments, and decision tree alternatives and choices. If you did not you should go back and complete the process again. You must review the completed document to make sure that it meets your specific circumstances and requirements, and the particular laws of your state. Docstoc does not review your completed document, including for consistency, spelling errors, or any reason at all. You (or your attorney) may want to make additional modifications to meet your specific needs and the laws of your state.
+? Where within this document you see this symbol: ? or an instruction states "Insert any number you choose?," or something similar, or there is a blank for the user to complete, please note that although Docstoc believes the information or number may be any that the user chooses, and that there is no law governing what the information or number should be, you might want to verify this, including by consulting with your own attorney licensed to practice law in your state. And even if one party has more negotiating leverage than another you might want to be reasonable.
+INFORMATION AND FORMS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED WARRANTY OF ANY KIND INCLUDING WARRANTIES OF MERCHANTABILITY, NONINFRINGEMENT OF INTELLECTUAL PROPERTY, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN NO EVENT SHALL DOCSTOC, INC., OR ITS AGENTS, OFFICERS, ATTORNEYS, ETC., BE LIABLE FOR ANY DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS INTERRUPTION, LOSS OF INFORMATION) ARISING OUT OF THE USE OF OR INABILITY TO USE THE MATERIALS, EVEN IF DOCSTOC HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+Your use of this document is deemed to be your agreement to the foregoing and that you have read and agree to our Terms of Service (http://www.docstoc.com/popterm.aspx?page_id=15), as well as ourdisclaimer that Legal information is not legal advice, and the important content available here http://www.docstoc.com/popterm.aspx?page_id=114
+No Docstoc employee, contractor, or attorney is authorized to provide you with any advice about what information (again, which includes forms) to use or how to use or complete it or them.
+Entire document © Docstoc, Inc., 2010, 2011

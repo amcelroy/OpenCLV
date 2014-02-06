@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCLV", "OpenCLV.vcxproj", "{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCLV Dummy", "OpenCLV Dummy.vcxproj", "{9CB1CF95-5D83-453E-9439-CA55FF3909A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug .EXE|Mixed Platforms = Debug .EXE|Mixed Platforms
+		Debug .EXE|Win32 = Debug .EXE|Win32
+		Debug .EXE|x64 = Debug .EXE|x64
+		Debug .EXE|x86 = Debug .EXE|x86
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release AMD|Mixed Platforms = Release AMD|Mixed Platforms
+		Release AMD|Win32 = Release AMD|Win32
+		Release AMD|x64 = Release AMD|x64
+		Release AMD|x86 = Release AMD|x86
+		Release NVIDIA|Mixed Platforms = Release NVIDIA|Mixed Platforms
+		Release NVIDIA|Win32 = Release NVIDIA|Win32
+		Release NVIDIA|x64 = Release NVIDIA|x64
+		Release NVIDIA|x86 = Release NVIDIA|x86
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|Mixed Platforms.ActiveCfg = Debug .EXE|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|Mixed Platforms.Build.0 = Debug .EXE|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|Win32.ActiveCfg = Debug .EXE|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|Win32.Build.0 = Debug .EXE|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|x64.ActiveCfg = Debug .EXE|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|x64.Build.0 = Debug .EXE|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug .EXE|x86.ActiveCfg = Debug .EXE|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|Win32.Build.0 = Debug|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|x64.ActiveCfg = Debug|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|x64.Build.0 = Debug|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Debug|x86.ActiveCfg = Debug|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|Mixed Platforms.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|Mixed Platforms.Build.0 = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|Win32.ActiveCfg = Release AMD|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|Win32.Build.0 = Release AMD|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|x64.ActiveCfg = Release AMD|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|x64.Build.0 = Release AMD|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release AMD|x86.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|Mixed Platforms.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|Mixed Platforms.Build.0 = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|Win32.ActiveCfg = Release NVIDIA|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|Win32.Build.0 = Release NVIDIA|Win32
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|x64.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|x64.Build.0 = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release NVIDIA|x86.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release|Mixed Platforms.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release|Mixed Platforms.Build.0 = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release|Win32.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release|x64.ActiveCfg = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release|x64.Build.0 = Release NVIDIA|x64
+		{E5B5B8D8-B872-4D6D-AE19-BF182DC46ECD}.Release|x86.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|Mixed Platforms.ActiveCfg = Debug .EXE|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|Mixed Platforms.Build.0 = Debug .EXE|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|Win32.ActiveCfg = Debug .EXE|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|Win32.Build.0 = Debug .EXE|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|x64.ActiveCfg = Debug .EXE|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|x64.Build.0 = Debug .EXE|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug .EXE|x86.ActiveCfg = Debug .EXE|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|Win32.Build.0 = Debug|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|x64.ActiveCfg = Debug|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|x64.Build.0 = Debug|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Debug|x86.ActiveCfg = Debug|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|Mixed Platforms.ActiveCfg = Release AMD|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|Mixed Platforms.Build.0 = Release AMD|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|Win32.ActiveCfg = Release AMD|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|Win32.Build.0 = Release AMD|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|x64.ActiveCfg = Release AMD|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|x64.Build.0 = Release AMD|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release AMD|x86.ActiveCfg = Release AMD|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|Mixed Platforms.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|Mixed Platforms.Build.0 = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|Win32.ActiveCfg = Release NVIDIA|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|Win32.Build.0 = Release NVIDIA|Win32
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|x64.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|x64.Build.0 = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release NVIDIA|x86.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release|Mixed Platforms.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release|Mixed Platforms.Build.0 = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release|Win32.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release|x64.ActiveCfg = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release|x64.Build.0 = Release NVIDIA|x64
+		{9CB1CF95-5D83-453E-9439-CA55FF3909A9}.Release|x86.ActiveCfg = Release NVIDIA|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
