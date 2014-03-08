@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="0.4" Created_Date="2013-02-04 21:57:37" Modified_Date="2014-02-06 14:21:31" Creator="Austin" Comments="" ID="65e27d844c589a33f2e915e02a20d251">
+<VI_Package_Builder_Settings Version="0.5" Created_Date="2013-02-04 21:57:37" Modified_Date="2014-03-07 23:21:44" Creator="Austin" Comments="" ID="c86e0c584b09f4167e6723276a8c9bea">
   <Library_General_Settings>
     <Package_File_Name>raptorview_openclv</Package_File_Name>
-    <Library_Version>1.0.2.92</Library_Version>
+    <Library_Version>1.0.2.93</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>..</Library_Output_Folder>
@@ -133,38 +133,7 @@ Changed the folder heirarchy for the Examples folder
       <Password_Overrides>
         <Path>.</Path>
         <Password/>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>Program Manipulation</Path>
-        <Password>&lt;random:32&gt;</Password>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>Non-User VIs</Path>
-        <Password>&lt;random:32&gt;</Password>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>Device Manipulation</Path>
-        <Password>&lt;random:32&gt;</Password>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>Memory Manipulation</Path>
-        <Password>&lt;random:32&gt;</Password>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>Functions</Path>
-        <Password>&lt;random:32&gt;</Password>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>_Help</Path>
-        <Password/>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>_EULA</Path>
-        <Password/>
-      </Password_Overrides>
-      <Password_Overrides>
-        <Path>Examples</Path>
-        <Password/>
+        <Locked_Only>false</Locked_Only>
       </Password_Overrides>
       <Namespace_Overrides>
         <Path>.</Path>
@@ -205,10 +174,10 @@ Changed the folder heirarchy for the Examples folder
       <Apply_Short_Names_to_VI_Titles>false</Apply_Short_Names_to_VI_Titles>
     </Palette_Sets>
     <Install_Requirements>
-      <All_Windows>false</All_Windows>
+      <All_Windows>true</All_Windows>
       <Windows_7>true</Windows_7>
-      <Windows_Vista>false</Windows_Vista>
-      <Windows_XP>false</Windows_XP>
+      <Windows_Vista>true</Windows_Vista>
+      <Windows_XP>true</Windows_XP>
       <Mac_OS>false</Mac_OS>
       <Linux>false</Linux>
       <Built_LV_Version>false</Built_LV_Version>
@@ -295,7 +264,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Functions</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>48508A1412F601B717A2361C7847ED88</GUID>
+      <GUID>A07AAF8E39D45FB2396D98DB612B3E69</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -386,7 +355,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Device Manipulation\Error Handler.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>F488A06E5815D3C74EF4DCC95CF70617</GUID>
+      <GUID>BC9C06C90F5E3637F8ED0FD6AC20777C</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -463,7 +432,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Functions\Anisotropic Filter</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>37C8A86EF114944808A356467A86DC1E</GUID>
+      <GUID>11B8A64E834B9B07EC5C5F62E4E38C94</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -624,7 +593,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Memory Manipulation\Register Memory or Image Event.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>760302CF0E3AFBAB64266AFAE0FB016B</GUID>
+      <GUID>5AAD9E5FB37725190724A635A01D6768</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -799,7 +768,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Program Manipulation\Register Kernel Event.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>CCA111DC38FF64C39F491E470CA1EFC9</GUID>
+      <GUID>EE1639DEFD538E1BE1E87663143FFB4B</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -848,7 +817,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Functions\FFT\FFT 32f.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>836BAEE54279FE5A1ADF3573D4210202</GUID>
+      <GUID>9F91EA1E4C18B637B4ABF8C0BAA25289</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -925,7 +894,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Functions\Differential\Laplacian 64f.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>FB4B535EE55D353EFF773F81BBE00566</GUID>
+      <GUID>1A8136B7661DC5CB3BC28CE350543AAC</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -960,7 +929,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Functions\Convolution\Convolution 32f.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>01BDF7B272E0B5E307C59F9EF5914A71</GUID>
+      <GUID>967603B806F9061DF930DA26BDFEC1DF</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -1009,7 +978,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>Functions\Anisotropic Filter\SRAD Filter 32f.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>D4A7691F5D19490F6B31262B50825EA8</GUID>
+      <GUID>FAD5CDFD870E3D72C46D0E9676407CC9</GUID>
     </Functions_Palette_Data>
     <Controls_Palette_Data>
       <Parent_Palette_Index>-1</Parent_Palette_Index>
@@ -1086,7 +1055,7 @@ Changed the folder heirarchy for the Examples folder
         <Path>User Controls\Offset.ctl</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>057F33A7F50A39085794C3658C49FB02</GUID>
+      <GUID>E6B9AAA83502A53D29CF0C3DE2729E26</GUID>
     </Controls_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
