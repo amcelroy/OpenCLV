@@ -275,7 +275,7 @@ void ComputeFFT(clAmdFftPlanHandle Handle, clLabviewDevice *d, cl_mem InR, cl_me
 		}
 
 		cl_int medstatus;
-		clMedBuffer = AllocateMemory(d, BuffSize, Error);	
+		//clMedBuffer = AllocateMemory(d, BuffSize, Error);	
 
 		if(*Error != 0){
 			*Error = clLabviewDevice::Error(OPENCLV_FFT_BUFFER_FAILED);
