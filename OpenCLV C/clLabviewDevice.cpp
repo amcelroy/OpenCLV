@@ -435,7 +435,8 @@ cl_mem AllocateMemory(clLabviewDevice *d, size_t Size, int *Error){
 	if(*Error != 0)
 		return NULL;
 	try{
-		cl_mem temp = clCreateBuffer(d->GetContext(), CL_MEM_READ_WRITE, Size, NULL, Error);	
+		//cl_mem temp = clCreateBuffer(d->GetContext(), CL_MEM_READ_WRITE, Size, NULL, Error);	
+		cl_mem temp = clCreateBuffer(d->GetContext(), CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, Size, NULL, Error);
 		if(*Error != 0){
 			*Error = clLabviewDevice::Error(*Error);
 			return 0;
@@ -560,11 +561,7 @@ void ReadMemory_32f(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 #ifndef NO_OPENCL					
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
-		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(float)*HostWidth, HostHeight, HostDepth};
+		return;		
 
 	cl_event *NewEvent = new cl_event;
 
@@ -583,14 +580,17 @@ void ReadMemory_32f(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}		
 
-		size_t HostRowPitch = HostWidth*sizeof(float);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(float);
-		size_t DevRowPitch = DevWidth*sizeof(float);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(float);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth * sizeof(float));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -622,11 +622,7 @@ void WriteMemory_32f(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 #ifndef NO_OPENCL
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
-		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(float)*HostWidth, HostHeight, HostDepth};
+		return;		
 
 	cl_event *NewEvent = new cl_event;
 
@@ -647,12 +643,15 @@ void WriteMemory_32f(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 			return;
 		}
 
-		size_t HostRowPitch = HostWidth*sizeof(float);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(float);
-		size_t DevRowPitch = DevWidth*sizeof(float);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(float);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(float));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -689,11 +688,7 @@ double *Data, double *Time, int *Error){
 #ifndef NO_OPENCL
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
-		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(double)*HostWidth, HostHeight, HostDepth};
+		return;		
 
 	cl_event *NewEvent = new cl_event;
 
@@ -713,13 +708,16 @@ double *Data, double *Time, int *Error){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
 		}
+		
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		size_t HostRowPitch = HostWidth*sizeof(double);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(double);
-		size_t DevRowPitch = DevWidth*sizeof(double);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(double);
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth * sizeof(double));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -753,10 +751,6 @@ void WriteMemory_64f(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(double)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -774,14 +768,17 @@ void WriteMemory_64f(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}		
 
-		size_t HostRowPitch = HostWidth*sizeof(double);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(double);
-		size_t DevRowPitch = DevWidth*sizeof(double);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(double);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(double));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -818,11 +815,7 @@ void ReadMemory_u16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 #ifndef NO_OPENCL
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
-		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned short)*HostWidth, HostHeight, HostDepth};
+		return;		
 
 	cl_event *NewEvent = new cl_event;
 
@@ -841,14 +834,17 @@ void ReadMemory_u16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}		
 
-		size_t HostRowPitch = HostWidth*sizeof(unsigned short);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(unsigned short);
-		size_t DevRowPitch = DevWidth*sizeof(unsigned short);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(unsigned short);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth * sizeof(unsigned short));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -881,11 +877,7 @@ void WriteMemory_u16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 #ifndef NO_OPENCL
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
-		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned short)*HostWidth, HostHeight, HostDepth};
+		return;		
 
 	cl_event *NewEvent = new cl_event;
 
@@ -904,14 +896,17 @@ void WriteMemory_u16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}		
 
-		size_t HostRowPitch = HostWidth*sizeof(unsigned short);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(unsigned short);
-		size_t DevRowPitch = DevWidth*sizeof(unsigned short);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(unsigned short);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(unsigned short));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -948,11 +943,7 @@ void ReadMemory_i16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 #ifndef NO_OPENCL
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
-		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(short)*HostWidth, HostHeight, HostDepth};
+		return;		
 
 	cl_event *NewEvent = new cl_event;
 
@@ -971,14 +962,17 @@ void ReadMemory_i16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}				
 
-		size_t HostRowPitch = HostWidth*sizeof(short);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(short);
-		size_t DevRowPitch = DevWidth*sizeof(short);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(short);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth * sizeof(short));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1013,10 +1007,6 @@ void WriteMemory_i16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(short)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1034,14 +1024,17 @@ void WriteMemory_i16(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}		
 
-		size_t HostRowPitch = HostWidth*sizeof(short);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(short);
-		size_t DevRowPitch = DevWidth*sizeof(short);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(short);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(short));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1080,10 +1073,6 @@ void ReadMemory_u32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned int)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1101,14 +1090,17 @@ void ReadMemory_u32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}				
+		
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		size_t HostRowPitch = HostWidth*sizeof(unsigned int);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(unsigned int);
-		size_t DevRowPitch = DevWidth*sizeof(unsigned int);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(unsigned int);
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth*sizeof(unsigned int));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+		
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1143,10 +1135,6 @@ void WriteMemory_u32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned int)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1164,29 +1152,33 @@ void WriteMemory_u32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}	
+		
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
+		
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+		
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth*sizeof(unsigned int));			
 
-		size_t HostRowPitch = HostWidth*sizeof(unsigned int);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(unsigned int);
-		size_t DevRowPitch = DevWidth*sizeof(unsigned int);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(unsigned int);
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
-		}
+		}	
 
-		if(MemoryRegistered == true){
+		if (MemoryRegistered == true) {
 			//The kernel is registered with a user event,
 			//create a new thread to wait for event to finish
 			d->CreateEventWaitThread(d, DeviceMem, d->GetLVEvent(DeviceMem));
-		}else{
+		}
+		else {
 			clFinish(d->GetQueue());
 			d->ThrowMemEvent(DeviceMem);
 		}
 
-		*Error = clLabviewDevice::Error(clFinish(d->GetQueue()));
+		*Error = clLabviewDevice::Error(clFinish(d->GetQueue()));		
 		*Time = d->GetTime();
 
 	}catch(...){
@@ -1209,10 +1201,6 @@ void ReadMemory_i32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned int)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1230,14 +1218,17 @@ void ReadMemory_i32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}	
+					
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		size_t HostRowPitch = HostWidth*sizeof(int);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(int);
-		size_t DevRowPitch = DevWidth*sizeof(int);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(int);
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth*sizeof(int));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1271,10 +1262,6 @@ void WriteMemory_i32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(int)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1292,14 +1279,17 @@ void WriteMemory_i32(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size
 		if(XOffset + HostWidth > DevWidth || YOffset + HostHeight > DevHeight || ZOffset + HostDepth > DevDepth){
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
-		}
+		}	
+				
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		size_t HostRowPitch = HostWidth*sizeof(int);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(int);
-		size_t DevRowPitch = DevWidth*sizeof(int);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(int);
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(int));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1336,10 +1326,6 @@ void ReadMemory_u8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_t
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned char)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1358,13 +1344,16 @@ void ReadMemory_u8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_t
 			*Error = clLabviewDevice::Error(OPENCLV_HOST_DEVICE_MEMORY_MISMATCH);
 			return;
 		}
+		
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		size_t HostRowPitch = HostWidth*sizeof(unsigned char);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(unsigned char);
-		size_t DevRowPitch = DevWidth*sizeof(unsigned char);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(unsigned char);
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth * sizeof(unsigned char));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1398,10 +1387,6 @@ void WriteMemory_u8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(unsigned char)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1421,12 +1406,15 @@ void WriteMemory_u8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 			return;
 		}
 
-		size_t HostRowPitch = HostWidth*sizeof(unsigned char);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(unsigned char);
-		size_t DevRowPitch = DevWidth*sizeof(unsigned char);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(unsigned char);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(unsigned char));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1464,10 +1452,6 @@ void ReadMemory_i8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_t
 	if(*Error != 0)
 		return;	
 
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(char)*HostWidth, HostHeight, HostDepth};
-
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1487,12 +1471,15 @@ void ReadMemory_i8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_t
 			return;
 		}
 
-		size_t HostRowPitch = HostWidth*sizeof(char);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(char);
-		size_t DevRowPitch = DevWidth*sizeof(char);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(char);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_READ, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueReadBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, HostRowPitch, HostSlicePitch, DevRowPitch, DevSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(Data, map_ptr, HostWidth*HostHeight*HostDepth * sizeof(char));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;
@@ -1524,11 +1511,7 @@ void WriteMemory_i8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 	*Error = clLabviewDevice::Error(clLabviewDevice::SanitizeDevice(d));
 	if(*Error != 0)
 		return;	
-
-	size_t Origin[3] = {XOffset, YOffset, ZOffset};
-	size_t HostOrigin[3] = {0,0,0};
-	size_t Region[3] = {sizeof(char)*HostWidth, HostHeight, HostDepth};
-
+	
 	cl_event *NewEvent = new cl_event;
 
 	bool MemoryRegistered = d->MemoryRegistered(DeviceMem);
@@ -1548,12 +1531,15 @@ void WriteMemory_i8(clLabviewDevice *d, cl_mem DeviceMem, size_t DevWidth, size_
 			return;
 		}
 
-		size_t HostRowPitch = HostWidth*sizeof(char);
-		size_t HostSlicePitch = HostWidth*HostHeight*sizeof(char);
-		size_t DevRowPitch = DevWidth*sizeof(char);
-		size_t DevSlicePitch = DevWidth*DevHeight*sizeof(char);
+		void* map_ptr = clEnqueueMapBuffer(d->GetQueue(), DeviceMem, CL_TRUE, CL_MAP_WRITE, 0, HostWidth*HostHeight*HostDepth, NULL, NULL, d->GetEvent(), Error);
 
-		*Error = clEnqueueWriteBufferRect(d->GetQueue(), DeviceMem, true, Origin, HostOrigin, Region, DevRowPitch, DevSlicePitch, HostRowPitch, HostSlicePitch, Data, NULL, NULL, d->GetEvent());
+		clFlush(d->GetQueue());
+		d->ThrowMemEvent(DeviceMem);
+
+		memcpy(map_ptr, Data, HostWidth*HostHeight*HostDepth * sizeof(char));
+
+		*Error = clEnqueueUnmapMemObject(d->GetQueue(), DeviceMem, map_ptr, 0, NULL, d->GetEvent());
+
 		*Error = clLabviewDevice::Error(*Error);
 		if(*Error != CL_SUCCESS){
 			return;

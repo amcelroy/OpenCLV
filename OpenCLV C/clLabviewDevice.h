@@ -39,6 +39,7 @@
 
 #include <utility>
 #include <CL/cl.h>
+#include <CL/cl_ext.h>
 #include <iostream>
 #include <vector>
 #include "cintools/extcode.h"
